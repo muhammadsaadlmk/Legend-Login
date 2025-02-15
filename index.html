@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Final Form</title>
+<style>
+body {
+    background: linear-gradient(45deg, #000428, #004e92);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial;
+}
+
+.outer {
+    background: rgba(0, 0, 0, 0.8);
+    width: 400px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.3);
+    position: relative;
+    min-height: 400px;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+p {
+    color: #fff;
+    margin-left: 40px;
+    margin-bottom: 5px;
+}
+
+.in {
+    width: 75%;
+    margin-left: 40px;
+    padding: 12px;
+    margin-bottom: 15px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid #48bb78;
+    border-radius: 8px;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.in::placeholder {
+    color: #ccc;
+}
+
+#bt {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 100px;
+    transition: all 0.03s linear;
+    width: 120px;
+    height: 45px; /* Fixed height */
+    display: flex; /* Added */
+    align-items: center; /* Vertical center */
+    justify-content: center; /* Horizontal center */
+}
+#bt:hover {
+    background: green;
+}
+</style>
+
+<script>
+let flag = 1;
+
+function f() {
+    const bt = document.getElementById('bt');    
+    if(flag === 1) {
+        bt.style.transform = "translateX(calc(-50% + 80px))";
+        flag = 2;
+    } else if(flag === 2) {
+        bt.style.transform = "translateX(calc(-50% - 80px))";
+        flag = 1;
+    }
+}
+
+function fa() {
+    const a = document.getElementById('a');
+    const b = document.getElementById('b');
+    const bt = document.getElementById('bt');
+    
+    if(a.value === "" || b.value === "") {
+        f();
+        a.style.border = "3px solid red";
+        b.style.border = "3px solid red";
+        bt.textContent = "Enter Details"; /* Changed from value to textContent */
+    } else {
+        a.style.border = "3px solid green";
+        b.style.border = "3px solid green";
+        bt.textContent = "Now Submit"; /* Changed from value to textContent */
+        bt.style.transform = "translateX(-50%)";
+    }
+}
+</script>
+</head>
+
+<body>
+<div class="outer">
+    <h1>Legend form</h1>
+    <p>Enter Id</p>
+    <input class="in" type="text" placeholder="Enter id" id="a">
+    <p>Enter Confirm Pass</p>
+    <input class="in" type="password" placeholder="Enter password" id="b">
+    <button type="submit" onmouseenter="fa()" onclick="alert('Good')" id="bt">Submit</button>
+</div>
+</body>
+</html>
